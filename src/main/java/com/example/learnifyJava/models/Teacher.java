@@ -2,14 +2,14 @@ package com.example.learnifyJava.models;
 
 public class Teacher {
     private Integer idTeacher;
-    private String especiality;
+    private String speciality;
 
     public Teacher(){
     }
 
     public Teacher(Integer idTeacher, String especiality) {
         this.idTeacher = idTeacher;
-        this.especiality = especiality;
+        this.speciality = especiality;
     }
 
     public Integer getIdTeacher() {
@@ -20,11 +20,11 @@ public class Teacher {
         this.idTeacher = idTeacher;
     }
 
-    public String getEspeciality() {
-        return especiality;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setEspeciality(String especiality) {
-        this.especiality = especiality;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 }
