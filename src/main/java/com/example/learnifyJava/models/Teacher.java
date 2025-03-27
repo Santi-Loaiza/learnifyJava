@@ -1,5 +1,8 @@
 package com.example.learnifyJava.models;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Teacher {
     private Integer idTeacher;
     private String speciality;
