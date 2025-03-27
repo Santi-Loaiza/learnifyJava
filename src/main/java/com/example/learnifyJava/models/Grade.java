@@ -1,10 +1,32 @@
 package com.example.learnifyJava.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "calificaciones")
 public class Grade {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_calificacion")
     private Integer idGrade;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_estudiante", referencedColumnName = "id_estudiante")
+    @JsonBackReference
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_materia", referencedColumnName = "id_materia")
+    @JsonBackReference
+    private Subject subject;
+
+    @Column(name = "nota", columnDefinition = "DECIMAL(5,2)", nullable = false)
     private Float score;
+
+    @Column(name = "fecha_evaluacion", nullable = false)
     private Date testDate;
 
     public Grade() {

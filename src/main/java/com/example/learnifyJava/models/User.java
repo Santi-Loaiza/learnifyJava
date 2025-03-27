@@ -1,13 +1,29 @@
 package com.example.learnifyJava.models;
 
 import com.example.learnifyJava.helpers.TypeUser;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "usuarios")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer idUser;
+
+    @Column(name = "nombre", length = 100, nullable = false)
     private String name;
-    private String password;
+
+    @Column(name = "correo", unique = true, length = 150, nullable = false)
     private String email;
+
+    @Column(name = "contraseña", length = 255, nullable = false)
+    private String password;
+
+    @Column(name = "telefono", length = 20, nullable = true)
     private String phoneNumber;
+
+    @Column(name = "tipo_usuario", nullable = false)
     private TypeUser userType;
 
     public User() {

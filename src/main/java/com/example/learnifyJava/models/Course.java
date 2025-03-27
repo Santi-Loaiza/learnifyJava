@@ -1,7 +1,10 @@
 package com.example.learnifyJava.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "cursos")
@@ -18,9 +21,14 @@ public class Course {
     // Creando la relacion  ( Muchos a uno)
 
     @ManyToOne
-    @JoinColumn(name = "fk_docente", referencedColumnName = "id")
+    @JoinColumn(name = "fk_docente", referencedColumnName = "id_docente")
     @JsonBackReference
     private Teacher teacher;
+
+    //Creando la relacion (Uno a muchos)
+    @OneToMany( mappedBy ="course")
+    @JsonManagedReference
+    private List<Attendance> attendances;
 
     public Course() {
     }

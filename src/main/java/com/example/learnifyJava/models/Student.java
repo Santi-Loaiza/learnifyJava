@@ -1,12 +1,37 @@
 package com.example.learnifyJava.models;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "estudiantes")
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_estudiante")
     private Integer idStudent;
+
+    @Column(name = "grado", nullable = false)
     private Integer grade;
-    private Date BirthDate;
+
+    @Column(name = "fecha_nacimiento", nullable = false)
+    private Date birthDate;
+
+    @Column(name = "direccion", length = 255, nullable = false)
     private String address;
+
+
+    //Creando la relacion (Uno a muchos)
+    @OneToMany( mappedBy ="student")
+    @JsonManagedReference
+    private List<Attendance> attendances;
+
+    @OneToMany( mappedBy ="student")
+    @JsonManagedReference
+    private List<Grade> grades;
 
     public Student() {
     }
@@ -14,7 +39,7 @@ public class Student {
     public Student(Integer idStudent, Integer grade, Date birthDate, String address) {
         this.idStudent = idStudent;
         this.grade = grade;
-        BirthDate = birthDate;
+        this.birthDate = birthDate;
         this.address = address;
     }
 
@@ -35,11 +60,11 @@ public class Student {
     }
 
     public Date getBirthDate() {
-        return BirthDate;
+        return birthDate;
     }
 
     public void setBirthDate(Date birthDate) {
-        BirthDate = birthDate;
+        this.birthDate = birthDate;
     }
 
     public String getAddress() {
