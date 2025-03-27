@@ -1,11 +1,21 @@
 package com.example.learnifyJava.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
+
 
 @Entity
 public class Teacher {
     private Integer idTeacher;
     private String speciality;
+
+    //Creando la relacion (Uno a muchos)
+    @OneToMany( mappedBy ="teacher")
+    @JsonManagedReference
+    private List<Course> course;
 
     public Teacher(){
     }
