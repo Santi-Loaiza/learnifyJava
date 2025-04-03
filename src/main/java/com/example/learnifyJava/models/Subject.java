@@ -1,5 +1,6 @@
 package com.example.learnifyJava.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -21,6 +22,11 @@ public class Subject {
     @OneToMany( mappedBy ="subject")
     @JsonManagedReference
     private List<Grade> grades;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_curso", referencedColumnName = "id_curso")
+    @JsonBackReference
+    private Course course;
 
 
     public Subject() {
