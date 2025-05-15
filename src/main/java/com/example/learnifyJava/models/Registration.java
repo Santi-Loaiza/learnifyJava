@@ -6,15 +6,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "inscipciones")
+@Table(name = "inscripciones")
 public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_inscripcion")
     private Integer idRegistration;
 
-    private Student student;
-    private Course course;
 
     @CreationTimestamp
     @Column(name = "fecha_inscripcion", updatable = false)
