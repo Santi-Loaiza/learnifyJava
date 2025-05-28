@@ -5,10 +5,7 @@ import com.example.learnifyJava.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/docentes")
@@ -32,10 +29,58 @@ public class TeacherController {
     }
 
     //buscarTodos
+    @GetMapping
+    public ResponseEntity<?> searchEverything(){
+        try{
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(this.service.listTeachers());
+        }catch(Exception errorAPI){
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(errorAPI.getMessage());
+        }
+    }
 
     //buscarPorId
+    @GetMapping("/{id}")
+    public ResponseEntity<?> searchById(@PathVariable Integer id){
+        try{
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(this.service.searchTeacherById(id));
+        }catch(Exception errorAPI){
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(errorAPI.getMessage());
+        }
+    }
 
     //modificar
+    @PutMapping("/{id}")
+    public ResponseEntity<?> modify(@PathVariable Integer id, @RequestBody Teacher data){
+        try{
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(this.service.modifyTeacher(id, data));
+        }catch(Exception errorAPI){
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(errorAPI.getMessage());
+        }
+    }
 
     //eliminar
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id){
+        try{
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(this.service.deleteTeacher(id));
+        }catch(Exception errorAPI){
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(errorAPI.getMessage());
+        }
+    }
 }
