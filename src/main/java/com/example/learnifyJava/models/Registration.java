@@ -13,6 +13,13 @@ public class Registration {
     @Column(name = "id_inscripcion")
     private Integer idRegistration;
 
+    @ManyToOne
+    @JoinColumn(name = "id_estudiante", referencedColumnName = "id_estudiante", nullable = false)
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_curso", referencedColumnName = "id_curso", nullable = false)
+    private Course course;
 
     @CreationTimestamp
     @Column(name = "fecha_inscripcion", updatable = false)

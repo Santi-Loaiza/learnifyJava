@@ -14,6 +14,11 @@ public class Student {
     @Column(name = "id_estudiante")
     private Integer idStudent;
 
+    @OneToOne
+    @JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario", nullable = false)
+    @JsonManagedReference(value = "estudiante-usuario")
+    private User user;
+
     @Column(name = "grado", nullable = false)
     private Integer grade;
 

@@ -22,6 +22,11 @@ public class Teacher {
     @JsonManagedReference
     private List<Course> courses;
 
+    @OneToOne
+    @JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario")
+    @JsonManagedReference(value = "docente-usuario")
+    private User user;
+
     public Teacher(){
     }
 

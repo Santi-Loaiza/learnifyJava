@@ -3,6 +3,7 @@ package com.example.learnifyJava.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -27,12 +28,12 @@ public class Grade {
     private Float score;
 
     @Column(name = "fecha_evaluacion", nullable = false)
-    private Date testDate;
+    private LocalDate testDate;
 
     public Grade() {
     }
 
-    public Grade(Integer idGrade, Float score, Date testDate) {
+    public Grade(Integer idGrade, Float score, LocalDate testDate) {
         this.idGrade = idGrade;
         this.score = score;
         this.testDate = testDate;
@@ -54,11 +55,11 @@ public class Grade {
         this.score = score;
     }
 
-    public Date getTestDate() {
+    public LocalDate getTestDate() {
         return testDate;
     }
 
-    public void setTestDate(Date testDate) {
+    public void setTestDate(LocalDate testDate) {
         this.testDate = testDate;
     }
 }

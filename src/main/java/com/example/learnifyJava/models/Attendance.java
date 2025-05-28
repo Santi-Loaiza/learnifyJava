@@ -3,8 +3,7 @@ package com.example.learnifyJava.models;
 import com.example.learnifyJava.helpers.TypeStatusAttendance;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "asistencias")
@@ -25,15 +24,16 @@ public class Attendance {
     private Course course;
 
     @Column(name = "fecha", nullable = false)
-    private Date date;
+    private LocalDate date;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
     private TypeStatusAttendance status;
 
     public Attendance() {
     }
 
-    public Attendance(Integer idAttendance, Date date, TypeStatusAttendance status) {
+    public Attendance(Integer idAttendance, LocalDate date, TypeStatusAttendance status) {
         this.idAttendance = idAttendance;
         this.date = date;
         this.status = status;
@@ -47,11 +47,11 @@ public class Attendance {
         this.idAttendance = idAttendance;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

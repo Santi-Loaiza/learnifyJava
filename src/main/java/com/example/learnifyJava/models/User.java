@@ -1,6 +1,7 @@
 package com.example.learnifyJava.models;
 
 import com.example.learnifyJava.helpers.TypeUser;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,8 +24,17 @@ public class User {
     @Column(name = "telefono", length = 20, nullable = true)
     private String phoneNumber;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "tipo_usuario", nullable = false)
     private TypeUser userType;
+
+    @OneToOne(mappedBy = "user")
+    @JsonBackReference(value = "docente-usuario")
+    private Teacher teacher;
+
+    @OneToOne(mappedBy = "user")
+    @JsonBackReference(value = "estudiante-usuario")
+    private Student student;
 
     public User() {
     }
