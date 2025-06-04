@@ -49,7 +49,7 @@ public class UserService {
     }
 
     //Metodo para modificar
-    public User modifyTeacher(Integer idUser, User newUserData)throws Exception{
+    public User modifyUser(Integer idUser, User newUserData)throws Exception{
         try{
             Optional<User> userOnSearchingForModifying=this.repository.findById(idUser);
             if(userOnSearchingForModifying.isPresent()){
@@ -66,7 +66,7 @@ public class UserService {
     }
 
     //Metodo para eliminar
-    public boolean deleteTeacher(Integer idUser)throws Exception{
+    public boolean deleteUser(Integer idUser)throws Exception{
         try{
             Optional<User> userOnSearching=this.repository.findById(idUser);
             if(userOnSearching.isPresent()){
