@@ -49,7 +49,7 @@ public class RegistrationService {
     }
 
     //Metodo para modificar
-    public Registration modifyRegistration(Integer idRegistration, Registration newRegistrationData)throws Exception{
+    public Registration modifyRegistration(Integer idRegistration, Teacher newRegistrationData)throws Exception{
         try{
             Optional<Registration> registrationOnSearchingForModifying=this.repository.findById(idRegistration);
             if(registrationOnSearchingForModifying.isPresent()){
